@@ -1,0 +1,38 @@
+################################################################################################################
+#####################               time:   20161117153020 ## 精确到秒              ############################
+################################################################################################################
+## input:  需要检查的用户输入数据的目录
+###        用户文件格式：url+'\t'+anything
+###        用户文件命名:name 和 name.done
+## parse_output: 拆解成url+'\t'+tag文件和url+'\t'+url_info
+###        文件命名及格式： 命名 ${time}.url.tag 格式 url+'\t'+tag 附加 ${time}.url.tag.done
+###                         命名 ${time}.url.info 格式 url+'\t'+url_dict_info 估计 ${time}.url.info.done
+## nrot_input: 用户计算nrot，并且在正排里写入自己的信息之后的保存目录
+###        文件命名及格式： 命名 ${time}.url.tag.nrot 格式 url+'\t'+tag+'\t'+nrot 附加 ${time}.url.tag.nrot.done
+###                         命名 ${time}.url.info 格式 url+'\t'+url_dict_info 估计 ${time}.url.info.done
+### DP_output: 建立倒排，及检查正排之后的保存位置。
+###        文件命名及格式： 命名 ${time}.d 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.d.done
+###                         命名 ${time}.e 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.e.done
+###                         命名 ${time}.n 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.n.done
+############################ notice::::: 目录确保要存在 #############################################
+############################ notice::::: test_name_V编号
+test_main	{"input":"./test/data-1/test_input_main", "parse_output":"./test/data-1/test_parse_output_main", "nrot_input":"./test/data-1/test_nrot_input_main", "DP_output":"./test/data-1/test_DP_output_main"}
+## name必须为不重复的，必须带着_VXX 才可以 ## 方便检查数据 ## VXX 举例 V10
+#l 模板样式 ##
+##test_name_VXX	{"input":"../data_test/test_input_name_VXX", "parse_output":"../data_test/test_parse_output_name_VXX", "nrot_input":"../data_test/test_nrot_input_name_VXX", "DP_output":"../data_test/test_DP_output_name_VXX"}
+test_kws_V10	{"input":"./test/data-1/test_input_kws_V10", "parse_output":"./test/data-1/test_parse_output_kws_V10", "nrot_input":"./test/data-1/test_nrot_input_kws_V10", "DP_output":"./test/data-1/test_DP_output_kws_V10"}
+test_alltag_V13	{"input":"./test/data-1/test_input_alltag_V13", "parse_output":"./test/data-1/test_parse_output_alltag_V13", "nrot_input":"./test/data-1/test_nrot_input_alltag_V13", "DP_output":"./test/data-1/test_DP_output_alltag_V13"}
+#test_withoutweight_V17	{"input":"../data_test/test_input_withoutweight_V17", "parse_output":"../data_test/test_parse_output_withoutweight_V17", "nrot_input":"../data_test/test_nrot_input_withoutweight_V17", "DP_output":"../data_test/test_DP_output_withoutweight_V17"}
+
+## merger_dir: 是用来将最新且符合条件的各个流程的倒排、正排、nrot文件存放的位置
+###        文件输入，上面的各个流程的DP_output目录
+###        文件输出，name_VXX ## 没有时间戳，用mv移动过来，保证数据原子性 ##
+merger_dir	{"merger_dir":"./test/data-1/test_merger"}
+## upload_dir: 是将合并池子里的数据，合并起来后，准备上传的数据  ##
+###        文件命名及格式： 命名 ${time}.d 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.d.done
+###                         命名 ${time}.e 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.e.done
+###                         命名 ${time}.n 格式 tag+'\t'+url1+'\1'+url2+'\1'+url3 附加 ${time}.n.done
+upload_dir	{"upload_dir":"./test/data-1/test_upload"}
+
+
+
