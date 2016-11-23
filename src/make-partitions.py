@@ -120,7 +120,7 @@ def consume_partition(forward_input_file, reverse_input_file, forward_output_fil
                 continue
             sorted_list = sorted([(url, score) for url, score in url_dict.iteritems()],
                                  key = lambda term: term[1], reverse = True)
-            sorted_str = "\001".join([url for url, score in sorted_list])
+            sorted_str = "\001".join([url for url, score in sorted_list[:200]])
             fd.write("%s\t%s\n" % (tag, sorted_str))
 
     check_call(["cp", "-f", forward_input_file, forward_output_file])
